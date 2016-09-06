@@ -25,8 +25,6 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
             picker.cameraCaptureMode = .Photo
             picker.showsCameraControls = false
             
-            //UIDevice.currentDevice().setValue(UIInterfaceOrientation.LandscapeRight.rawValue, forKey: "orientation")
-            
             picker.delegate = self
             
             let cameraVC = CameraOverlayViewController(nibName: NibNames.cameraOverlayViewController, bundle: nil)
@@ -48,8 +46,6 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
                 overlayView.delegate = self
                 
                 self.picker.cameraOverlayView = overlayView
-                
-                //self.picker.cameraOverlayView!.transform = CGAffineTransformRotate(CGAffineTransformIdentity, 117.81)
             })
         }
         else {
@@ -76,9 +72,6 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
         tesseract.delegate = self
         
         tesseract.image = image
-        //tesseract.charWhitelist = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890<>"
-        
-        
         
         dismissViewControllerAnimated(true, completion: {
             tesseract.recognize()
@@ -107,25 +100,4 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
     func progressImageRecognitionForTesseract(tesseract: G8Tesseract!) {
         NSLog("progress: \(tesseract.progress)")
     }
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
