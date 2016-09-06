@@ -28,11 +28,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z5A-pq-2eJ">
                                 <rect key="frame" x="67" y="28" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="U4g-Ai-UWA"/>
+                                    <constraint firstAttribute="height" constant="128" id="CiH-F1-FRd"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FBa-hk-m3n">
-                                <rect key="frame" x="20" y="164" width="335" height="52"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FBa-hk-m3n">
+                                <rect key="frame" x="20" y="164" width="335" height="445"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -40,11 +40,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Z5A-pq-2eJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="2Qp-8m-tZY"/>
-                            <constraint firstItem="la5-cz-uhX" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="5TV-Ea-2QM"/>
-                            <constraint firstItem="Z5A-pq-2eJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nb2-D4-h45"/>
-                            <constraint firstAttribute="bottom" secondItem="la5-cz-uhX" secondAttribute="bottom" constant="20" symbolic="YES" id="lT1-a5-WEv"/>
-                            <constraint firstItem="Z5A-pq-2eJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="wB5-o8-qTH"/>
+                            <constraint firstItem="FBa-hk-m3n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="HWJ-F8-tWm"/>
+                            <constraint firstItem="FBa-hk-m3n" firstAttribute="top" secondItem="Z5A-pq-2eJ" secondAttribute="bottom" constant="8" symbolic="YES" id="X6J-3S-08e"/>
+                            <constraint firstItem="Z5A-pq-2eJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="YsW-aw-vqf"/>
+                            <constraint firstItem="Z5A-pq-2eJ" firstAttribute="centerX" secondItem="FBa-hk-m3n" secondAttribute="centerX" id="hrr-gf-veq"/>
+                            <constraint firstItem="Z5A-pq-2eJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="iWp-DG-L44"/>
+                            <constraint firstItem="la5-cz-uhX" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="m4T-4j-ohI"/>
+                            <constraint firstItem="la5-cz-uhX" firstAttribute="top" secondItem="FBa-hk-m3n" secondAttribute="bottom" constant="8" symbolic="YES" id="nlC-rB-oyy"/>
+                            <constraint firstAttribute="bottom" secondItem="la5-cz-uhX" secondAttribute="bottom" constant="20" symbolic="YES" id="qPu-oi-jkA"/>
+                            <constraint firstItem="Z5A-pq-2eJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qZ3-FP-plt"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

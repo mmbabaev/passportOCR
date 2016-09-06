@@ -19,7 +19,7 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
     
     @IBAction func takePhotoClicked(sender: UIButton) {
         if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
-            picker = NonRotatingImagePickerController()
+            picker = UIImagePickerController()
             picker.allowsEditing = false
             picker.sourceType = .Camera
             picker.cameraCaptureMode = .Photo
@@ -89,7 +89,14 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
                 lines = lines.filter( { $0 != "" } )
                 
                 let lastLine = lines.popLast()
-                self.mrcTextView.text = "\(lines.popLast()!)\n\(lastLine!)"
+                
+                let mrCode = "\(lines.popLast()!)\n\(lastLine!)"
+                if let info = PassportInfo(machineReadableCode: mrCode) {
+                    self.mrcTextView.text = String(info)
+                }
+                else {
+                    self.mrcTextView.text = "Error"
+                }
             }
             else {
                 NSLog("RECOGNIZED: ERROR")
