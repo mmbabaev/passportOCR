@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		87198AD41D7DD7B500128C49 /* PassportInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87198AD31D7DD7B500128C49 /* PassportInfo.swift */; };
-		87257A391D7E4828006B41A5 /* passportPattern.txt in Resources */ = {isa = PBXBuildFile; fileRef = 87257A381D7E4828006B41A5 /* passportPattern.txt */; };
 		87257A3C1D7E4E2E006B41A5 /* NSTextCheckingResultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87257A3B1D7E4E2E006B41A5 /* NSTextCheckingResultExtension.swift */; };
 		8778AF4B1D7AA86600340C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8778AF4A1D7AA86600340C8B /* AppDelegate.swift */; };
 		8778AF501D7AA86600340C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8778AF4E1D7AA86600340C8B /* Main.storyboard */; };
@@ -41,7 +40,6 @@
 		0AFDA4C64AF71248D9E83E40 /* Pods-PassportOCR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PassportOCR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PassportOCR/Pods-PassportOCR.debug.xcconfig"; sourceTree = "<group>"; };
 		5891AE423ACAE5B8458535CE /* Pods-PassportOCR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PassportOCR.release.xcconfig"; path = "Pods/Target Support Files/Pods-PassportOCR/Pods-PassportOCR.release.xcconfig"; sourceTree = "<group>"; };
 		87198AD31D7DD7B500128C49 /* PassportInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassportInfo.swift; sourceTree = "<group>"; };
-		87257A381D7E4828006B41A5 /* passportPattern.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = passportPattern.txt; sourceTree = "<group>"; };
 		87257A3B1D7E4E2E006B41A5 /* NSTextCheckingResultExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTextCheckingResultExtension.swift; sourceTree = "<group>"; };
 		8778AF471D7AA86600340C8B /* PassportOCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassportOCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8778AF4A1D7AA86600340C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,17 +89,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		87257A371D7E4812006B41A5 /* other */ = {
+		87257A371D7E4812006B41A5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				8778AF641D7AB81700340C8B /* Constants.swift */,
 				87EEF4E51D7F07F5008FADA0 /* passportPattern.txt */,
 				8778AF561D7AA86600340C8B /* Info.plist */,
 				8778AF4A1D7AA86600340C8B /* AppDelegate.swift */,
 				8778AF511D7AA86600340C8B /* Assets.xcassets */,
 				8795AC941D7CB4D500B66C38 /* tessdata */,
-				87257A381D7E4828006B41A5 /* passportPattern.txt */,
 			);
-			name = other;
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		87257A3A1D7E4E1D006B41A5 /* Extensions */ = {
@@ -111,7 +109,35 @@
 				87EEF4D11D7EDB2E008FADA0 /* NSDateExtension.swift */,
 				87EEF4D31D7EF116008FADA0 /* StringExtension.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		874ACE051D805EEB00B3EB50 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				87198AD31D7DD7B500128C49 /* PassportInfo.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		874ACE061D805EF900B3EB50 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8778AF5C1D7AAA1200340C8B /* TakePhotoViewController.swift */,
+				8778AF5E1D7AAE2A00340C8B /* CameraOverlayViewController.swift */,
+				8778AF621D7AAE5700340C8B /* OverlayView.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		874ACE071D805F0100B3EB50 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8778AF4E1D7AA86600340C8B /* Main.storyboard */,
+				8778AF5F1D7AAE2A00340C8B /* CameraOverlayViewController.xib */,
+				8778AF531D7AA86600340C8B /* LaunchScreen.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		8778AF3E1D7AA86600340C8B = {
@@ -137,16 +163,11 @@
 		8778AF491D7AA86600340C8B /* PassportOCR */ = {
 			isa = PBXGroup;
 			children = (
+				874ACE071D805F0100B3EB50 /* Views */,
+				874ACE061D805EF900B3EB50 /* Controllers */,
+				874ACE051D805EEB00B3EB50 /* Models */,
 				87257A3A1D7E4E1D006B41A5 /* Extensions */,
-				87257A371D7E4812006B41A5 /* other */,
-				8778AF5C1D7AAA1200340C8B /* TakePhotoViewController.swift */,
-				8778AF4E1D7AA86600340C8B /* Main.storyboard */,
-				8778AF531D7AA86600340C8B /* LaunchScreen.storyboard */,
-				8778AF5E1D7AAE2A00340C8B /* CameraOverlayViewController.swift */,
-				8778AF5F1D7AAE2A00340C8B /* CameraOverlayViewController.xib */,
-				8778AF621D7AAE5700340C8B /* OverlayView.swift */,
-				8778AF641D7AB81700340C8B /* Constants.swift */,
-				87198AD31D7DD7B500128C49 /* PassportInfo.swift */,
+				87257A371D7E4812006B41A5 /* Helper */,
 			);
 			path = PassportOCR;
 			sourceTree = "<group>";
@@ -260,7 +281,6 @@
 				8778AF611D7AAE2A00340C8B /* CameraOverlayViewController.xib in Resources */,
 				87EEF4E61D7F07F5008FADA0 /* passportPattern.txt in Resources */,
 				8778AF501D7AA86600340C8B /* Main.storyboard in Resources */,
-				87257A391D7E4828006B41A5 /* passportPattern.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +574,7 @@
 				87EEF4E41D7F01F5008FADA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

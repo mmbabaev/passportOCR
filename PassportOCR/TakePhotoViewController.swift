@@ -14,6 +14,7 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
 
     var picker: UIImagePickerController!
     
+    @IBOutlet weak var codeTextView: UITextView!
     @IBOutlet weak var mrcTextView: UITextView!
     @IBOutlet weak var cameraImageView: UIImageView!
     
@@ -66,38 +67,58 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        cameraImageView.image = image
+        
+        
+        dismissViewControllerAnimated(true, completion: {
+            self.recognizeImage(image)
+            //self.recognizeImage(UIImage(named: "passport-2")!)
+        })
+    }
+    
+    func recognizeImage(image: UIImage) {
+        self.cameraImageView.image = image
         
         let tesseract = G8Tesseract(language: "eng")
         tesseract.delegate = self
         
         tesseract.image = image
+        tesseract.charWhitelist = Constants.alphabet.uppercaseString
+        tesseract.charWhitelist.append("<>1234567890")
         
-        dismissViewControllerAnimated(true, completion: {
-            tesseract.recognize()
-
-            if let recognizedText = tesseract.recognizedText {
-                print("RECOGNIZED: \(recognizedText)")
-                var lines = tesseract.recognizedText.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
-                lines = lines.filter( { $0 != "" } )
-                
-                let lastLine = lines.popLast()
-                
-                let mrCode = "\(lines.popLast()!)\n\(lastLine!)"
-                if let info = PassportInfo(machineReadableCode: mrCode) {
-                    self.mrcTextView.text = String(info)
-                }
-                else {
-                    self.mrcTextView.text = "Error"
-                }
+        tesseract.recognize()
+        
+        if let recognizedText = tesseract.recognizedText {
+            print("RECOGNIZED: \(recognizedText)")
+            
+            let mrCode = tesseract.recognizedText.stringByReplacingOccurrencesOfString(" ", withString: "")
+            
+            if let info = PassportInfo(machineReadableCode: mrCode) {
+                self.mrcTextView.text = String(info)
             }
             else {
-                NSLog("RECOGNIZED: ERROR")
+                self.mrcTextView.text = "Error"
+                self.codeTextView.text = mrCode
             }
-        })
+        }
+        else {
+            NSLog("RECOGNIZED: ERROR")
+        }
     }
     
     func progressImageRecognitionForTesseract(tesseract: G8Tesseract!) {
         NSLog("progress: \(tesseract.progress)")
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,7 +13,6 @@ protocol OverlayViewDelegate{
     func didShoot(overlayView: OverlayView)
 }
 
-
 class OverlayView: UIView {
 
     @IBOutlet weak var passportBorder: UIView!
