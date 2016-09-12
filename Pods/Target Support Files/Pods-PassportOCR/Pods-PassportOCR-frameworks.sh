@@ -84,14 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-PassportOCR/Boilerplate.framework"
-  install_framework "Pods-PassportOCR/Regex.framework"
-  install_framework "Pods-PassportOCR/Result.framework"
+  install_framework "Pods-PassportOCR/GPUImage.framework"
+  install_framework "Pods-PassportOCR/MRProgress.framework"
   install_framework "Pods-PassportOCR/TesseractOCR.framework"
+  install_framework "Pods-PassportOCR/UIImage_Resize.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-PassportOCR/Boilerplate.framework"
-  install_framework "Pods-PassportOCR/Regex.framework"
-  install_framework "Pods-PassportOCR/Result.framework"
+  install_framework "Pods-PassportOCR/GPUImage.framework"
+  install_framework "Pods-PassportOCR/MRProgress.framework"
   install_framework "Pods-PassportOCR/TesseractOCR.framework"
+  install_framework "Pods-PassportOCR/UIImage_Resize.framework"
 fi

@@ -5,6 +5,8 @@ use_frameworks!
 
 target 'PassportOCR' do
 	pod 'TesseractOCRiOS', '4.0.0'
-	pod 'CrossroadRegex'
+    pod 'UIImage-Resize'
+    pod 'GPUImage'
+    pod 'MRProgress'
 end
 

@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import Boilerplate
-import Regex
-import Result.Swift
 import TesseractOCR
 
 enum Sex {
@@ -36,6 +33,8 @@ struct PassportInfo {
 //    let checkDigit2: Int
 //    let checkDigit3: Int
 //    let checkDigit4: Int
+    
+    
     
     init?(machineReadableCode code: String) {
         var regex: NSRegularExpression!
@@ -66,7 +65,7 @@ struct PassportInfo {
             case "M":
                 sex = .Male
             default:
-                NSLog("Error: unknown sex in \(code)")
+                NSLog("Error: unknown sex \(sexLetter)")
                 sex = .Unknown
             }
             
@@ -76,17 +75,22 @@ struct PassportInfo {
             personalNumber = result.group(atIndex: 23, fromSource: code)
         }
         else {
-            print("no match result")
+            NSLog("Error: no match result")
             return nil
         }
     }
     
-    init?(image: UIImage) {
+    init?(image: UIImage, sender: G8TesseractDelegate?) {
         let tesseract = G8Tesseract(language: "eng")
         
+        if sender != nil {
+            tesseract.delegate = sender!
+        }
+        
         tesseract.image = image
-        tesseract.charWhitelist = Constants.alphabet.uppercaseString
-        tesseract.charWhitelist.append("<>1234567890")
+        var whiteList = Constants.alphabet.uppercaseString
+        whiteList.appendContentsOf("<>1234567890")
+        tesseract.charWhitelist = whiteList
         
         tesseract.recognize()
         

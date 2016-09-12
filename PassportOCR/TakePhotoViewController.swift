@@ -9,10 +9,13 @@
 import UIKit
 import Darwin
 import TesseractOCR
+import MRProgress
 
 class TakePhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, OverlayViewDelegate, G8TesseractDelegate {
 
     var picker: UIImagePickerController!
+    
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBOutlet weak var codeTextView: UITextView!
     @IBOutlet weak var mrcTextView: UITextView!
@@ -68,45 +71,42 @@ class TakePhotoViewController: UIViewController, UINavigationControllerDelegate,
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
+//        NSLog("\(image.size)")
+//        let rect = CGRectMake(2000, 0, 2448, 1000)
+//        let cropped = image.croppedImageWithSize(rect)
         
-        dismissViewControllerAnimated(true, completion: {
-            self.recognizeImage(image)
-            //self.recognizeImage(UIImage(named: "passport-2")!)
-        })
-    }
-    
-    func recognizeImage(image: UIImage) {
-        self.cameraImageView.image = image
+        let cropped = image
         
-        let tesseract = G8Tesseract(language: "eng")
-        tesseract.delegate = self
+        self.cameraImageView.contentMode = .ScaleAspectFit
+        self.cameraImageView.image = cropped
+        self.mrcTextView.text = ""
         
-        tesseract.image = image
-        tesseract.charWhitelist = Constants.alphabet.uppercaseString
-        tesseract.charWhitelist.append("<>1234567890")
+        dismissViewControllerAnimated(true, completion: nil)
         
-        tesseract.recognize()
+        self.activityIndicatorView.startAnimating()
         
-        if let recognizedText = tesseract.recognizedText {
-            print("RECOGNIZED: \(recognizedText)")
-            
-            let mrCode = tesseract.recognizedText.stringByReplacingOccurrencesOfString(" ", withString: "")
-            
-            if let info = PassportInfo(machineReadableCode: mrCode) {
-                self.mrcTextView.text = String(info)
+        NSOperationQueue().addOperationWithBlock {
+            let info = PassportInfo(image: cropped, sender: self)
+                    
+            dispatch_async(dispatch_get_main_queue()) {
+                self.activityIndicatorView.stopAnimating()
+                
+                if info != nil {
+                    self.mrcTextView.text = String(info)
+                }
+                else {
+                    self.mrcTextView.text = "Error"
+                }
             }
-            else {
-                self.mrcTextView.text = "Error"
-                self.codeTextView.text = mrCode
-            }
-        }
-        else {
-            NSLog("RECOGNIZED: ERROR")
         }
     }
     
     func progressImageRecognitionForTesseract(tesseract: G8Tesseract!) {
         NSLog("progress: \(tesseract.progress)")
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .Portrait
     }
 }
 

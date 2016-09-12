@@ -48,7 +48,7 @@ class PassportOCRTests: XCTestCase {
     }
     
     func testImageWithName(imageName: String) {
-        let info = PassportInfo(image: UIImage(named: imageName)!)
+        let info = PassportInfo(image: UIImage(named: imageName)!, sender: nil)
         XCTAssert(info != nil)
     }
     
@@ -74,8 +74,7 @@ class PassportOCRTests: XCTestCase {
     
     func testPerformanceExample() {
         self.measureBlock {
-            self.testCode1()
+            self.testCode2()
         }
     }
-    
 }
